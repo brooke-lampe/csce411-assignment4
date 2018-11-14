@@ -1,2 +1,16 @@
 Step A Queries 
 
+Loading persons.csv: 
+
+load csv with headers from "file:///persons.csv" as line 
+create(p:Person{id: toInteger(line.id), 
+		 name: line.name, 
+		 state: line.state});
+
+
+Loading friends.csv: 
+
+load csv with headers from "file:///friends.csv" as line 
+match (p:Person{id: toInteger(line.personId)}) 
+match (f:Person{id: toInteger(line.friendId)}) 
+create (p)-[:FRIEND_WITH {year: line.year}]->(f)
