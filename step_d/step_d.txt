@@ -1,0 +1,34 @@
+Step D Queries
+
+Relational Database:
+
+depth 2
+
+depth 3
+
+depth 4
+
+depth 5
+
+
+Neo4j:
+
+depth 2
+
+MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*2..2]->(friend_of_friend:Person)
+RETURN friend_of_friend.name
+
+depth 3
+
+MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*3..3]->(friend_of_friend:Person)
+RETURN friend_of_friend.name
+
+depth 4
+
+MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*4..4]->(friend_of_friend:Person)
+RETURN friend_of_friend.name
+
+depth 5
+
+MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*5..5]->(friend_of_friend:Person)
+RETURN friend_of_friend.name
