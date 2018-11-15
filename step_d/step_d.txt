@@ -28,7 +28,8 @@ CREATE INDEX ON :Person(id, name, state)
 
 depth 2
 
-MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*2..2]->(friend_of_friend:Person)
+MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*2..2]->(friend_of_friend:Person)
+WHERE NOT ((person)-[:FRIEND_WITH*1..1]->(friend_of_friend))
 RETURN friend_of_friend.name
 
 time_without_indices: 22ms
@@ -37,7 +38,8 @@ time_with_indices: 1ms
 
 depth 3
 
-MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*3..3]->(friend_of_friend:Person)
+MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*3..3]->(friend_of_friend:Person)
+WHERE NOT ((person)-[:FRIEND_WITH*1..2]->(friend_of_friend))
 RETURN friend_of_friend.name
 
 time_without_indices: 31ms
@@ -46,7 +48,8 @@ time_with_indices: 6ms
 
 depth 4
 
-MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*4..4]->(friend_of_friend:Person)
+MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*4..4]->(friend_of_friend:Person)
+WHERE NOT ((person)-[:FRIEND_WITH*1..3]->(friend_of_friend))
 RETURN friend_of_friend.name
 
 time_without_indices: 49ms
@@ -55,7 +58,8 @@ time_with_indices: 39ms
 
 depth 5
 
-MATCH (person:Person { name: "Jovan Kalt" })-[:FRIEND_WITH*5..5]->(friend_of_friend:Person)
+MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*5..5]->(friend_of_friend:Person)
+WHERE NOT ((person)-[:FRIEND_WITH*1..4]->(friend_of_friend))
 RETURN friend_of_friend.name
 
 time_without_indices: 204ms

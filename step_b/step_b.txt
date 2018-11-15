@@ -21,7 +21,7 @@ WHERE person.state = "Nebraska" AND rel.year >= "2005"
 WITH person, count(friend) AS cnt
 WITH MAX(cnt) AS maxcnt
 MATCH (o)
-WHERE size((o)<-[:FRIEND_WITH]-()) = maxcnt
+WHERE size((o)-[:FRIEND_WITH]->()) = maxcnt
 RETURN o.name, maxcnt
 
 
@@ -31,5 +31,5 @@ MATCH (person:Person)-[:FRIEND_WITH]->(friend:Person)
 WITH person, count(friend) AS cnt
 WITH MAX(cnt) AS maxcnt
 MATCH (o)
-WHERE size((o)<-[:FRIEND_WITH]-()) = maxcnt
+WHERE size((o)-[:FRIEND_WITH]->()) = maxcnt
 RETURN o.name, maxcnt
