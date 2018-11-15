@@ -1,6 +1,8 @@
 
 var result = d3.json("input_graph.json", function(data) {
-    renderGraph(data.nodes, data.links);
+    var links = data.links.map(d => Object.create(d));
+    var nodes = data.nodes.map(d => Object.create(d));
+    renderGraph(nodes, links);
 });
 
 function renderGraph(nodes, links) {
