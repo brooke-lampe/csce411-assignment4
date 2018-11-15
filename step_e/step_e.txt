@@ -1,0 +1,12 @@
+Step E
+
+When the database contains a lot of tables with a lot of columns and few, if any, foreign keys / relationships, then a relational database would be better than a graph database, such as Neo4j.  Likewise, when queries involve only one table, a relational database is probably better.
+
+MATCH (person:Person { name: "Jovan Kalt" })
+RETURN person.id, person.name, person.state
+
+MATCH (person:Person { name: "Jovan Kalt", id: 1963, state: "Alabama" })
+RETURN person.id, person.name, person.state
+
+MATCH (person:Person { state: "Nebraska" })
+RETURN person.id, person.name, person.state
