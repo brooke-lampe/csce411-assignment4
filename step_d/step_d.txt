@@ -17,12 +17,12 @@ Neo4j:
 
 without indices
 
-DROP INDEX ON :Person(name)
+DROP INDEX ON :Person(id)
 DROP INDEX ON :Person(id, name, state)
 
 with indices
 
-CREATE INDEX ON :Person(name)
+CREATE INDEX ON :Person(id)
 CREATE INDEX ON :Person(id, name, state)
 
 
@@ -32,8 +32,8 @@ MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*2..2]->(friend_
 WHERE NOT ((person)-[:FRIEND_WITH*1..1]->(friend_of_friend))
 RETURN DISTINCT friend_of_friend.id
 
-time_without_indices: 22ms
-time_with_indices: 1ms
+time_without_indices: 4ms
+time_with_indices: 3ms
 
 
 depth 3
@@ -42,8 +42,8 @@ MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*3..3]->(friend_
 WHERE NOT ((person)-[:FRIEND_WITH*1..2]->(friend_of_friend))
 RETURN DISTINCT friend_of_friend.id
 
-time_without_indices: 31ms
-time_with_indices: 6ms
+time_without_indices: 43ms
+time_with_indices: 41ms
 
 
 depth 4
@@ -52,8 +52,8 @@ MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*4..4]->(friend_
 WHERE NOT ((person)-[:FRIEND_WITH*1..3]->(friend_of_friend))
 RETURN DISTINCT friend_of_friend.id
 
-time_without_indices: 49ms
-time_with_indices: 39ms
+time_without_indices: 481ms
+time_with_indices: 499ms
 
 
 depth 5
@@ -62,5 +62,5 @@ MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*5..5]->(friend_
 WHERE NOT ((person)-[:FRIEND_WITH*1..4]->(friend_of_friend))
 RETURN DISTINCT friend_of_friend.id
 
-time_without_indices: 204ms
-time_with_indices: 227ms
+time_without_indices: 3028ms
+time_with_indices: 3094ms
