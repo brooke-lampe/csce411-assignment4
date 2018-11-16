@@ -85,3 +85,16 @@ RETURN DISTINCT friend_of_friend.id
 
 time_without_indices: 3028ms
 time_with_indices: 3094ms
+
+
+MACHINE CONFIGURATION
+Manufacturer		Dell
+Model				Latitude 3570
+CPU					i7-6500U 2.50 GHz
+Main Memory Size	16.0 GB RAM
+Hard Disk			500 GB HDD
+OS					64-bit Windows 7 Professional
+
+
+INDEXING CONCLUSIONS
+The times for the indexed queries are very similar to the times for the non-indexed queries.  We cannot refine our discovers with Neo4j by using or not using indexing because we have no statistically significant data.  We theorize that we would have better findings if we used a larger data set, or if our queries included all friends of friends, rather than only friends of friends who are not immediate friends (all friends of equal or lesser depth).

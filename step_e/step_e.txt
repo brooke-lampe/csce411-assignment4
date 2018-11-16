@@ -1,6 +1,11 @@
 Step E
 
-When the database contains a lot of tables with a lot of columns and few, if any, foreign keys / relationships, then a relational database would be better than a graph database, such as Neo4j.  Likewise, when queries involve only one table, a relational database is probably better.
+
+When the database contains a lot of tables with a lot of columns and few, if any, foreign keys / relationships, then a relational database would be better than a graph database, such as Neo4j.  Likewise, when queries involve only one table, a relational database is probably better.  A relational database would be better in these cases because the data lends itself to table format, and relational databases are more optimized to search through tables than graph databases are.  If the data contains a lot of relationships, then relational databases would suffer because of the number of foreign keys and joins required to query them, while graph databases would experience better functionality.
+
+Another consideration is the amount of time relational databases have existed compared to graph databases.  Graph databases are newer and have had less time to become optimized and widely supported.  So, unless the data is ideal for a graph database, it is probably better to use a relational database and relational database queries.
+
+Below, we have examples of a few queries in which graph databases do not offer advantages because there are no relationships involved.
 
 MATCH (person:Person { name: "Jovan Kalt" })
 RETURN person.id, person.name, person.state
@@ -10,3 +15,17 @@ RETURN person.id, person.name, person.state
 
 MATCH (person:Person { state: "Nebraska" })
 RETURN person.id, person.name, person.state
+
+--------------------------------------------------------------------------------------------------
+
+Syntactically, if we are doing a query for immediate friends, the SQL query is better because it is shorter and simpler, but if we are doing a query of greater depth, then we would want to use a Cypher query in Neo4j.  See the two queries below, note that the SQL query is shorter than the Cypher query.
+
+SQL
+
+SELECT friendId FROM friends WHERE personId = 1961
+
+
+Cypher
+
+MATCH (person:Person { name: "Cecilia Thenhaus" })-[:FRIEND_WITH*1..1]->(friend_of_friend:Person)
+RETURN DISTINCT friend_of_friend.id
