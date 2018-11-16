@@ -34,11 +34,11 @@ xmlhttp.onreadystatechange = function () {
             }));
         });
         console.log(nodes, links)
-        renderGraph(nodes, links);
+        makeGraph(nodes, links);
     }
 };
 
-function renderGraph(nodes, links) {
+function makeGraph(nodes, links) {
     var width = 800, height = 800;
     var force = d3.layout.force()
       .charge(-200)
